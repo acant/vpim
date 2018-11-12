@@ -8,6 +8,8 @@ $-w = true
 $:.unshift File.dirname(__FILE__) + "/../lib"
 $:.unshift File.dirname(__FILE__) + "/.."
 
+require 'simplecov'
+SimpleCov.start
 
 #pp [__LINE__, $:, $"]
 

@@ -1,6 +1,3 @@
 language: ruby
-install: gem install plist
 rvm:
   - 1.9.3
-script: make test
-

@@ -4,3 +4,5 @@ ex_ics_api.out
 tags
 *.gem
 Gemfile.lock
+coverage
+tmp
