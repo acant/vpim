@@ -22,18 +22,18 @@ task :copy_bin do
 end
 
 desc 'Build all gems into the pkg directory'
-task build: %i[copy_bin vpim:build vpim_icalendar:build]
+task build: ['copy_bin', 'vpim:build', 'vpim_icalendar:build']
 
 desc 'Build and install all gems into system gems'
-task install: %i[copy_binvpim:install vpim_icalendar:install]
+task install: ['copy_bin', 'vpim:install', 'vpim_icalendar:install']
 
 namespace :install do
   desc 'Build and install all gems into system gems without network access'
-  task local: %i[copy_bin vpim:install:local vpim_icalendar:install:local]
+  task local: ['copy_bin', 'vpim:install:local', 'vpim_icalendar:install:local']
 end
 
 desc 'Creat tag and build and push all gems to rubygems.org'
-task release: %i[stamp copy_bin vpim:release vpim_icalendar:release]
+task release: ['stamp', 'copy_bin', 'vpim:release', 'vpim_icalendar:release']
 
 require 'rdoc/task'
 RDoc::Task.new do |rdoc|
@@ -64,7 +64,7 @@ task :example_test do
 end
 
 desc 'Run tests'
-task test: %i[unit_test example_test]
+task test: [:unit_test, :example_test]
 
 task :bday do
   ruby '-I lib samples/vcf-to-ics.rb < _all.vcf | tee _bday.ics'
@@ -87,4 +87,4 @@ task :ics_api do
   ruby '-I lib -w -rpp ex_ics_api.rb > ex_ics_api.out'
 end
 
-task default: %i[test]
+task default: [:test]
