@@ -79,7 +79,7 @@ module Vpim
 
       def file_each(file, klass, &block) #:nodoc:
         unless iterator?
-          return self.enum_for(:each)
+          return self.enum_for(:each, klass)
           #return Enumerable::Enumerator.new(self, :each, klass)
         end
 
@@ -130,7 +130,7 @@ module Vpim
 
         def each(klass=nil, &block) #:nodoc:
           unless iterator?
-            return self.enum_for(:each)
+            return self.enum_for(:each, klass)
             #return Enumerable::Enumerator.new(self, :each, klass)
           end
           Dir[ @dir + "/Events/*.ics" ].map do |ics|
@@ -220,7 +220,7 @@ module Vpim
 
         def each(klass, &block) #:nodoc:
           unless iterator?
-            return self.enum_for(:each)
+            return self.enum_for(:each, klass)
             #return Enumerable::Enumerator.new(self, :each, klass)
           end
 

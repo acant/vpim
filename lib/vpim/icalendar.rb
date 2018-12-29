@@ -366,7 +366,7 @@ TODO
     # such as timezone definitions.
     def each(klass=nil, &block) # :yield: component
       unless block
-        return self.enum_for(:each)
+        return self.enum_for(:each, klass)
         #return Enumerable::Enumerator.new(self, :each, klass)
       end
       components(klass, &block)
